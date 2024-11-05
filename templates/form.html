@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Fill in the Blanks{% endblock %}
+
+{% block content %}
+    <h2>Fill in the story {{ story.title }}</h2>
+    <form action="/story" method="post">
+        <input type="hidden" name="story_code" value="{{ story.code }}">
+       
+        {% for prompt in story.prompts %}
+            <label for="{{ prompt }}">{{ prompt.capitalize() }}:</label>
+            <input type="text" name="{{ prompt }}" required>
+        {% endfor %}
+        <button type="submit">Generate Story</button>
+    </form>
+{% endblock %}
